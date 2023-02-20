@@ -16,7 +16,7 @@
     <div class="example-wrapper">
         <h1>Hello {{ name }}</h1>
 
-        <form id="formInput" method="post" action="{{ path('app_ajax_form_input') }}">
+        <form id="formInput_" method="post" action="{{ path('app_ajax_form_input') }}">
             <input name="name" id="name" type="text">
             <input name="password" type="password">
             <button type="submit">Gönder</button>
@@ -27,11 +27,13 @@
 {% endblock %}
 
 {% block javascripts %}
-    <script src="">
+    <script>
+        alert('');
         $(document).ready(function() {
-
-            $('#formInput').on('submit', function (e) {
+            alert('');
+            $('#formInput_').on('submit', function (e) {
                 e.preventDefault();
+                alert();
                 //ajaxRequest('formInput');
             });
 
@@ -40,15 +42,17 @@
         function ajaxRequest(formId) {
             $.ajax({
                 type: $('#'+formId).attr('method'),
-                url: $('#formInput').attr('action'),//'{{ path('app_ajax_form_input') }}',
+                url: $('#formInput').attr('action'),
                 data: { "name":$('#name').val() }
             }).done(function (xhr) {
                 //$('.loading_'+chart).css('display', 'none');
 
-                if (xhr.status && xhr.results.hasNewData) {
-                    $('#lastCreatedDate').text(xhr.results.lastCreatedDate);
-                    getReportExtra("totals", "today");
-                    getReport("chartImport", "bar", 1), getReport("chartSupplier", "bar", 1), getReport("chartAirline", "bar", 1), getReport("chartCustomer", "bar", 1);
+                if (xhr.status) {
+                    alert(xhr.message);
+                    $('#response_').html(xhr.results.data1);
+                }
+                else {
+                    alert(xhr.message);
                 }
             }).fail(function (xhr) {
                 //$('.loading_'+chart).css('display', 'none');
@@ -60,9 +64,4 @@
             });
         }
     <script>
-
-
-
-
-    </script>
 {% endblock %}

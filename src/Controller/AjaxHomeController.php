@@ -44,6 +44,24 @@ class AjaxHomeController extends AbstractController
         $entityManager->persist($menu);
         $entityManager->flush();*/
 
+        $test['status'] = true;
+        $test['results'] = array();
+        $test['message'] = 'Başarılı.';
+
+        try {
+
+            //throw new \Exception('hata var!');
+
+            //...
+            $test['results']['data1'] = '<div><table class="table"></table></div>';
+        }
+        catch (\Exception $exception) {
+            $test['status'] = false;
+            $test['message'] = $exception->getMessage();
+        }
+
+        $response->setContent(json_encode($test));
+
         return $response;
     }
 }
