@@ -27,7 +27,7 @@ class AjaxHomeController extends AbstractController
         ]);
     }
 
-    #[Route('/ajax-form-save', name: 'app_ajax_form_save')]
+    #[Route('/ajax-user-form-save', name: 'app_ajax_user_form_save')]
     public function ajaxFormSave(Request $request, ManagerRegistry $doctrine): Response
     {
         $response = new Response();
@@ -53,13 +53,15 @@ class AjaxHomeController extends AbstractController
             //throw new \Exception('hata var!');
 
             //...
-            $test['results']['data1'] = '<div><table class="table"><thead><tr><th>Test</th></tr></thead><tbody><tr><td>Deneme</td></tr></tbody></table></div>';
+            //$test['results']['data1'] = '<div><table class="table"><thead><tr><th>Test</th></tr></thead><tbody><tr><td>Deneme</td></tr></tbody></table></div>';
+            //echo '<div><table class="table"><thead><tr><th>Test</th></tr></thead><tbody><tr><td>Deneme</td></tr></tbody></table></div>';
         }
         catch (\Exception $exception) {
             $test['status'] = false;
             $test['message'] = $exception->getMessage();
         }
 
+        //$response->headers('Content-type', 'application/json');
         $response->setContent(json_encode($test));
 
         return $response;
