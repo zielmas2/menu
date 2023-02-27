@@ -31,7 +31,7 @@
             //alert('');
             $('#formInput_').on('submit', function (e) {
                 e.preventDefault();
-                alert();
+                //alert();
                 ajaxRequest('formInput');
             });
 
@@ -41,9 +41,11 @@
             $.ajax({
                 type: $('#'+formId).attr('method'),
                 url: $('#formInput_').attr('action'),
-                data: { "name":$('#name').val() }
+                data: { "name":$('#name').val() },
+                dataType: 'json'
             }).done(function (xhr) {
                 //$('.loading_'+chart).css('display', 'none');
+                console.log(xhr);
 
                 if (xhr.status) {
                     alert(xhr.message);

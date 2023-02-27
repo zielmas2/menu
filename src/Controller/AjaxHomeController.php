@@ -53,7 +53,7 @@ class AjaxHomeController extends AbstractController
             //throw new \Exception('hata var!');
 
             //...
-            $test['results']['data1'] = '<div><table class="table"></table></div>';
+            $test['results']['data1'] = '<div><table class="table"><thead><tr><th>Test</th></tr></thead><tbody><tr><td>Deneme</td></tr></tbody></table></div>';
         }
         catch (\Exception $exception) {
             $test['status'] = false;
